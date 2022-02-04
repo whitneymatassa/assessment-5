@@ -13,7 +13,6 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
 })
 
 module.exports = {
-
     getCountries: (req, res) => {
         sequelize.query(`
         SELECT * FROM countries
@@ -26,7 +25,7 @@ module.exports = {
         const { name, rating, country_id } = req.body
         sequelize.query(`
         INSERT INTO cities (name, rating, country_id)
-        VALUES(${citie_id}, '${name}', '${rating}', '${country_id}')
+        VALUES(${city_id}, '${name}', '${rating}', '${country_id}')
         RETURNING *;`)
         .then(dbres => res.status(200).send(dbres[0]))
             .catch(err => console.log(err))
